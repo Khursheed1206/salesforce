@@ -1,0 +1,103 @@
+Salesforce Lab Experiment: Picklist Administration
+Experiment Name
+Picklist Administration in Salesforce
+Aim
+To create and manage picklists, configure field dependency, use a global value set, and apply a dynamic default value based on day of the week.
+Objectives
+1.	Create controlling and dependent picklists in the Student object.
+2.	Create and consume a Global Value Set.
+3.	Apply a formula-driven default value to assign a lab type depending on whether it’s Monday or not.
+Theory
+•	Picklist: Dropdown field with predefined values for consistent data entry.
+•	Restricted Picklist: Only allows the predefined values.
+•	Global Value Set: Shared picklist values across multiple fields.
+•	Field Dependency: One picklist (controlling) filters values in another (dependent).
+•	Formula Default Value: Automatically sets a default based on logic—in this case, the day of the week.
+Pre-requisites
+•	Salesforce Developer Org / Trailhead Playground
+•	Access to Setup and Object Manager
+•	Student custom object created
+Procedure
+Part A: Create Picklists with Field Dependency
+1.	Create Controlling Picklist
+o	Setup → Object Manager → Student → Fields & Relationships → New.
+o	Choose Picklist → Next.
+o	Label: Department
+o	Enter values (one per line): CSE, ECE, Mechanical, EEE, Civil
+o	Check Restrict picklist to the values defined in the value set.
+o	Set Field-Level Security (Visible to all profiles).
+o	Add to Page Layouts and Save.
+o	Create Dependent Field – Subject
+o	New Picklist field.
+o	Label: Subject
+o	Enter values (one per line) for all subjects listed below in the mapping table.
+o	Save.
+o	Configure Field Dependency
+o	Fields & Relationships → Field Dependencies → New.
+o	Controlling Field: Department
+o	Dependent Field: Subject → Continue.
+o	Map values as per the table below.
+
+o	Department vs Subject Mapping
+o	Controlling Field<br>(Department)	o	Dependent Picklist Values<br>(Subject)
+CSE	Data Structures and Algorithms, Operating Systems, Database Management Systems, Artificial Intelligence, Machine Learning, Cybersecurity, Cloud Computing
+ECE	Analog Circuits, Digital Circuits, Signals and Systems, Communication Systems, Control Systems, Electromagnetic Theory, VLSI Design, Embedded Systems
+o	Mechanical	Thermodynamics, Fluid Mechanics, Mechanics of Materials, Materials Science, Machine Design
+o	Civil	Structural Engineering, Geotechnical Engineering, Transportation Engineering, Environmental Engineering, Water Resources Engineering, Construction Management, Surveying
+o	EEE	Power Systems, Power Electronics, Control Systems, Electrical Machines, Digital Electronics
+
+o	Part B: Create Country–State Field Dependency Using Global Value Set
+o	Create Global Value Set – Countries
+o	Setup → Quick Find → Picklist Value Sets → New.
+o	Label: Countries
+o	Values: India, USA, China, Australia, Sri Lanka
+o	Save.
+o	Create Country Picklist in Student
+o	Object Manager → Student → Fields & Relationships → New.
+o	Picklist → Next.
+o	Label: Country
+o	Select Use global value set → Choose Countries.
+o	Save.
+o	Create State Picklist in Student
+o	Object Manager → Student → Fields & Relationships → New.
+o	Picklist → Next.
+o	Label: State
+o	Enter all state/province values from the mapping table below.
+o	Save.
+o	Configure Country–State Dependency
+o	Fields & Relationships → Field Dependencies → New.
+o	Controlling Field: Country
+o	Dependent Field: State → Continue.
+o	Map values as per the table below.
+o	Country vs State Mapping
+Controlling Field(Country)	Dependent Picklist Values(State)
+India	Andhra Pradesh, Telangana, Karnataka, Kerala, Tamil Nadu, Maharashtra, Uttar Pradesh
+USA	California, Texas, Florida, New York, Pennsylvania
+China	Taiwan, Anhui, Fujian, Gansu, Hebei
+Australia	New South Wales (NSW), Victoria (VIC), Queensland (QLD)
+Sri Lanka	Central Province, Eastern Province, North Central Province, Northern Province, North Western Province
+
+Part C: Apply Formula for Lab Assignment Default Value
+o	Create new Picklist in Student:
+o	Label: Lab Assignment
+o	Values: Salesforce Lab, Flutter Lab
+o	Save.
+o	Edit the Lab Assignment field:
+o	Under Default Value, select Formula.
+o	Enter:
+IF(
+    WEEKDAY(TODAY()) = 2,
+    "Salesforce Lab",
+    "Flutter Lab"
+)
+Check Syntax → Save.
+o	Observations
+o	Subject list changes dynamically based on the chosen Department.
+o	State list changes dynamically based on the chosen Country.
+o	Lab Assignment defaults to Salesforce Lab on Mondays, Flutter Lab on other days.
+o	Result
+o	Created two field dependencies: Department–Subject and Country–State.
+o	Used a Global Value Set for Country values.
+o	Applied a day-of-week-based formula to auto-select the lab type.
+
+
