@@ -1,0 +1,43 @@
+Lab Experiment – 16: Building an AI Agent using Prompt Builder and Agentforce
+AIM:
+To design and configure an intelligent AI Agent using Prompt Builder that leverages LLMs and CRM data through Agentforce.
+OBJECTIVE:
+1.	To understand how Large Language Models (LLMs) interact with CRM data.
+2.	To build a Prompt in Prompt Builder for a specific business use case.
+3.	To integrate the Prompt into an Autonomous Agent using Agentforce Builder.
+4.	To observe how the agent performs reasoning and retrieves CRM data dynamically.
+THEORY:
+Large Language Models (LLMs) form the backbone of generative AI applications by understanding and generating human-like responses.
+In Salesforce, Data + AI + CRM integration allows LLMs to interact securely with customer data, enabling more personalized and context-aware answers.
+The Prompt Builder tool is used to design structured prompts that define how the LLM should behave and respond.
+Agentforce extends this by enabling the creation of Autonomous Agents that can perform tasks, interact with CRM records, and automate workflows.
+By combining Prompt Fundamentals and Agentforce Builder, developers can create intelligent AI-driven assistants tailored for specific CRM operations.
+PROCEDURE:
+1.	Login to Salesforce Setup:
+o	Navigate to Agentforce Setup under AI Cloud.
+2.	Create a New Prompt in Prompt Builder:
+o	Open Prompt Builder.
+o	Click New Prompt Template.
+o	Enter Prompt Name: CustomerInsightPrompt.
+o	Define the input variable: Customer_ID.
+o	In the prompt text, enter:
+“Retrieve key details and latest opportunities for the customer with ID: {!Customer_ID}.”
+o	Save and Test Prompt with a sample customer ID.
+3.	Build the Agent using Agentforce Builder:
+o	Go to Agentforce Builder.
+o	Click New Agent → Name it CRM Insight Agent.
+o	Assign the previously created Prompt Template (CustomerInsightPrompt).
+o	Configure the Data Access Scope (e.g., Accounts, Opportunities).
+o	Set Agent Type: Autonomous Agent.
+4.	Enable the Agent:
+o	Activate the agent and deploy it to a test environment or sandbox.
+5.	Test the Agent:
+o	Query the agent with a customer ID (e.g., “Get insights for Customer ID 1001”).
+o	Observe the LLM response integrating CRM data dynamically.
+OBSERVATION:
+Test Input	Prompt Executed	Agent Response	Observation
+Customer ID: 1001	Retrieve key details and latest opportunities	“Customer 1001 – John Doe has 3 open opportunities worth ₹5,00,000.”	The LLM used CRM data and generated contextual insights successfully.
+RESULT:
+The CRM Insight Agent was successfully created and integrated with Prompt Builder using Agentforce.
+The experiment demonstrates how LLMs, CRM data, and Prompt Engineering can be combined to create Autonomous Agents capable of contextual reasoning and intelligent automation.
+
